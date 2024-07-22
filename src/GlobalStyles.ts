@@ -23,10 +23,19 @@ const GlobalStyles = createGlobalStyle`
     font-size: 16px;
   }
 
+  body {
+    background-color: ${colors.beige};
+  }
+
   .container {
     margin: 0 auto;
     max-width: 1024px;
     padding: 64px 20px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
   }
 `;
 

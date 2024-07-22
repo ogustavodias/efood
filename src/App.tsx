@@ -1,5 +1,7 @@
 // Styles
+import Footer from "./components/Footer";
 import Header from "./components/Header";
+import StoreList from "./components/StoreList";
 import GlobalStyles from "./GlobalStyles";
 
 function App() {
@@ -7,6 +9,8 @@ function App() {
     <>
       <GlobalStyles />
       <Header />
+      <StoreList />
+      <Footer />
     </>
   );
 }
