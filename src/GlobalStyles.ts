@@ -22,6 +22,12 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
     font-size: 16px;
   }
+
+  .container {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 64px 20px;
+  }
 `;
 
 export default GlobalStyles;

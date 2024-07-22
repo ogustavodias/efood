@@ -1,11 +1,12 @@
 // Styles
+import Header from "./components/Header";
 import GlobalStyles from "./GlobalStyles";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <p>Efood</p>
+      <Header />
     </>
   );
 }
