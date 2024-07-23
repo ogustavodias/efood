@@ -1,6 +1,3 @@
-// Styles
-import * as S from "./styles";
-
 // Components
 import MenuList from "../../components/MenuList";
  

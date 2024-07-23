@@ -1,5 +1,3 @@
-import React from "react";
-
 // Components
 import StoreList from "../../components/StoreList";
 
