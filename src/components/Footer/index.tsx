@@ -1,17 +1,17 @@
 // Styles
 import * as S from "./styles";
 
-// SRC of images
-import logo from "../../assets/images/logo.svg";
-
 // Social icons
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+
+// Components
+import Logo from "../Logo";
 
 const Footer = () => {
   return (
     <S.Footer>
       <div className="container">
-        <img src={logo} alt="Efood logo" />
+        <Logo />
         <S.Social>
           <span><FaInstagram/></span>
           <span><FaFacebookF/></span>

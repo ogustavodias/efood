@@ -6,6 +6,9 @@ import { colors } from "../../GlobalStyles";
 // Star image
 import starImage from "../../assets/images/estrela.png";
 
+// Link component of react-router-dom
+import { Link } from "react-router-dom";
+
 export const Card = styled.li`
   position: relative;
   max-width: 472px;
@@ -72,7 +75,7 @@ export const Description = styled.p`
   margin: 16px 0;
 `;
 
-export const KnowMore = styled.a`
+export const KnowMore = styled(Link)`
   display: block;
   padding: 6px 4px;
   max-width: max-content;

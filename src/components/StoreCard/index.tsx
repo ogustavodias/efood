@@ -23,7 +23,7 @@ const StoreCard = () => {
           rápida, embalagens cuidadosas e qualidade garantida. Experimente o
           Japão sem sair do lar com nosso delivery!
         </S.Description>
-        <S.KnowMore>Saiba mais</S.KnowMore>
+        <S.KnowMore to={"/menu"}>Saiba mais</S.KnowMore>
       </S.Infos>
     </S.Card>
   );

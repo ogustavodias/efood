@@ -5,10 +5,6 @@ import { colors } from "../../GlobalStyles";
 
 export const Footer = styled.footer`
   background-color: ${colors.whiteRed};
-
-  img {
-    margin: 0 auto;
-  }
 `;
 
 export const Social = styled.ul`
