@@ -3,7 +3,6 @@ import GlobalStyles from "./GlobalStyles";
 
 // Components
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 
 // React-router-dom
 import { BrowserRouter } from "react-router-dom";
@@ -14,7 +13,6 @@ function App() {
     <>
       <GlobalStyles />
       <BrowserRouter>
-        <Header />
         <AppRoutes />
         <Footer />
       </BrowserRouter>

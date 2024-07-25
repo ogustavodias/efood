@@ -6,7 +6,7 @@ import StoreCard from "../StoreCard";
 
 const StoreList = () => {
   return (
-    <S.StoreList className="container">
+    <S.StoreList>
       <StoreCard />
       <StoreCard />
       <StoreCard />

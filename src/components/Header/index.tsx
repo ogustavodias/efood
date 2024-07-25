@@ -3,31 +3,17 @@ import * as S from "./styles";
 
 // Components
 import Logo from "../Logo";
-import { Link, useLocation } from "react-router-dom";
 
-const Header = () => {
-  const location = useLocation();
-  const inPerfil = location.pathname === "/perfil";
+// Typescript with React
+import { PropsWithChildren } from "react";
 
+const Header = ({ children }: PropsWithChildren) => {
   return (
     <S.Header>
       <div className="container">
         <Logo />
-        <S.Aside style={{ display: inPerfil ? "flex" : "none" }}>
-          <Link to={"/"}>Restaurantes</Link>
-          <span>0 produtos(s) no carrinho</span>
-        </S.Aside>
-        <S.HomeSlogan style={{ display: inPerfil ? "none" : "block" }}>
-          Viva experiências gastronômicas <br />
-          no conforto da sua casa
-        </S.HomeSlogan>
       </div>
-      <S.CuisineInfo style={{ display: inPerfil ? "block" : "none" }}>
-        <div className="container">
-          <S.Specialty>Italiana</S.Specialty>
-          <S.Name>La Dolce Vita Trattoria</S.Name>
-        </div>
-      </S.CuisineInfo>
+      {children}
     </S.Header>
   );
 };
