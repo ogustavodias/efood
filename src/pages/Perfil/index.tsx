@@ -1,3 +1,6 @@
+// React
+import React from "react";
+
 // Styles
 import * as S from "./styles";
 
@@ -6,9 +9,28 @@ import Header from "../../components/Header";
 import MenuList from "../../components/MenuList";
 
 // React-router-dom
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
+// Types
+import Restaurant from "../../types/restaurant";
 
 const Perfil = () => {
+  const [restaurant, setRestaurant] = React.useState<Restaurant>();
+  const { id } = useParams();
+
+  React.useEffect(() => {
+    async function fetchRestaurant() {
+      const url = `https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`;
+      const response = await fetch(url);
+      const json = await response.json();
+      if (response.ok) setRestaurant(json);
+    }
+
+    fetchRestaurant();
+  }, [id]);
+
+  if (!restaurant) return null;
+
   return (
     <>
       <Header>
@@ -20,13 +42,13 @@ const Perfil = () => {
         </div>
         <S.CuisineInfo>
           <div className="container">
-            <S.Specialty>Italiana</S.Specialty>
-            <S.Name>La Dolce Vita Trattoria</S.Name>
+            <S.Specialty>{restaurant.tipo}</S.Specialty>
+            <S.Name>{restaurant.titulo}</S.Name>
           </div>
         </S.CuisineInfo>
       </Header>
       <section className="container">
-        <MenuList />
+        <MenuList menu={restaurant.cardapio} />
       </section>
     </>
   );

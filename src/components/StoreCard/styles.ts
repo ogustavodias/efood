@@ -11,13 +11,16 @@ import { Link } from "react-router-dom";
 
 export const Card = styled.li`
   position: relative;
-  max-width: 472px;
   width: 100%;
+  height: 398px;
   background-color: ${colors.white};
   color: ${colors.red};
 
-  img {
+  > img {
     display: block;
+    height: 50%;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -38,9 +41,14 @@ export const Tags = styled.ul`
 `;
 
 export const Infos = styled.div`
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-content: start;
+  height: 50%;
   border: 1px solid ${colors.red};
   border-top: none;
   padding: 8px;
+  overflow-y: hidden;
 
   > div {
     display: flex;
@@ -73,6 +81,7 @@ export const Description = styled.p`
   font-size: 14px;
   font-weight: 400;
   margin: 16px 0;
+  overflow-y: auto;
 `;
 
 export const KnowMore = styled(Link)`

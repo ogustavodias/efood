@@ -5,7 +5,9 @@ import * as S from "./styles";
 import Header from "../../components/Header";
 import StoreList from "../../components/StoreList";
 
+
 const Home = () => {
+
   return (
     <>
       <Header>

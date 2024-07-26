@@ -4,15 +4,17 @@ import * as S from "./styles";
 // Components
 import MenuCard from "../MenuCard";
 
-const MenuList = () => {
+// Types
+import { Dish } from "../../types/restaurant";
+
+type Props = {
+  menu: Dish[];
+};
+
+const MenuList = ({ menu }: Props) => {
   return (
     <S.List>
-      <MenuCard />
-      <MenuCard />
-      <MenuCard />
-      <MenuCard />
-      <MenuCard />
-      <MenuCard />
+      {menu.map(item => <MenuCard dish={item}/>)}
     </S.List>
   );
 };
