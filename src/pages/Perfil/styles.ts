@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-// Cuisine image
-import bgCuisine from "../../assets/images/cozinha.png";
-
 // Global colors
 import { colors } from "../../GlobalStyles";
 
@@ -19,10 +16,14 @@ export const Aside = styled.aside`
   }
 `;
 
-export const CuisineInfo = styled.div`
-  position: relative;
-  background: url(${bgCuisine}) no-repeat center center / cover;
+type Props = {
+  background: string;
+};
 
+export const CuisineInfo = styled.div<Props>`
+  position: relative;
+  background: ${({ background }: Props) =>
+    background ? `url(${background}) no-repeat center center / cover;` : ""};
   .container {
     padding: 24px 20px;
   }

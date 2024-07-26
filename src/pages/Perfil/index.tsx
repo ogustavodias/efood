@@ -40,7 +40,7 @@ const Perfil = () => {
             <span>0 produtos(s) no carrinho</span>
           </S.Aside>
         </div>
-        <S.CuisineInfo>
+        <S.CuisineInfo background={restaurant.capa}>
           <div className="container">
             <S.Specialty>{restaurant.tipo}</S.Specialty>
             <S.Name>{restaurant.titulo}</S.Name>
