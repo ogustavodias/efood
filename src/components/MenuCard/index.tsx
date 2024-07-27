@@ -9,16 +9,17 @@ import { Dish } from "../../types/restaurant";
 
 type Props = {
   dish: Dish;
+  openModal: (dish: Dish) => void;
 };
 
-const MenuCard = ({ dish }: Props) => {
+const MenuCard = ({ dish, openModal }: Props) => {
   return (
     <S.Card>
       <img src={dish.foto} alt={dish.nome} />
       <S.Infos>
         <S.DishName>{dish.nome}</S.DishName>
         <S.DishDescription>{dish.descricao}</S.DishDescription>
-        <Button>Adicionar ao carrinho</Button>
+        <Button onClick={() => openModal(dish)}>Mais detalhes</Button>
       </S.Infos>
     </S.Card>
   );

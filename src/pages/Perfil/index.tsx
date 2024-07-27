@@ -48,7 +48,7 @@ const Perfil = () => {
         </S.CuisineInfo>
       </Header>
       <section className="container">
-        <MenuList menu={restaurant.cardapio} />
+        <MenuList menu={restaurant.cardapio}/>
       </section>
     </>
   );

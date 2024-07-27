@@ -2,10 +2,18 @@
 import * as S from "./styles";
 
 // Typescript with React
-import { PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
-const Button = ({ children }: PropsWithChildren) => {
-  return <S.Button type="button">{children}</S.Button>;
+interface Props
+  extends PropsWithChildren,
+    ButtonHTMLAttributes<HTMLButtonElement> {}
+
+const Button = ({ children, ...props }: Props) => {
+  return (
+    <S.Button type="button" {...props}>
+      {children}
+    </S.Button>
+  );
 };
 
 export default Button;
