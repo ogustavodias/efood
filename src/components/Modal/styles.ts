@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Modal = styled.div`
+  position: relative;
   transform: scale(0);
   pointer-events: none;
   display: grid;

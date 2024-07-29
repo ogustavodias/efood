@@ -13,10 +13,22 @@ import { Link, useParams } from "react-router-dom";
 
 // Types
 import Restaurant from "../../types/restaurant";
+import Modal from "../../components/Modal";
+import ModalCart from "../../components/ModalCart";
 
 const Perfil = () => {
+  const [cartModalOpen, setCartModalOpen] = React.useState(false);
   const [restaurant, setRestaurant] = React.useState<Restaurant>();
   const { id } = useParams();
+
+  function openModal() {
+    setCartModalOpen(true);
+  }
+
+  function closeModal(element: EventTarget & Element) {
+    setCartModalOpen(false);
+    element.classList.remove("openned");
+  }
 
   React.useEffect(() => {
     async function fetchRestaurant() {
@@ -33,12 +45,15 @@ const Perfil = () => {
 
   return (
     <>
+      <Modal openned={cartModalOpen} closeModal={closeModal}>
+        <ModalCart />
+      </Modal>
       <Header>
         <div className="container">
-          <S.Aside>
+          <S.Nav>
             <Link to={"/"}>Restaurantes</Link>
-            <span>0 produtos(s) no carrinho</span>
-          </S.Aside>
+            <span onClick={openModal}>0 produtos(s) no carrinho</span>
+          </S.Nav>
         </div>
         <S.CuisineInfo background={restaurant.capa}>
           <div className="container">
@@ -48,7 +63,7 @@ const Perfil = () => {
         </S.CuisineInfo>
       </Header>
       <section className="container">
-        <MenuList menu={restaurant.cardapio}/>
+        <MenuList menu={restaurant.cardapio} />
       </section>
     </>
   );

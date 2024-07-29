@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Global colors
 import { colors } from "../../GlobalStyles";
 
-export const Aside = styled.aside`
+export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -13,6 +13,10 @@ export const Aside = styled.aside`
     font-size: 18px;
     font-weight: 900;
     color: ${colors.red};
+  }
+
+  span {
+    cursor: pointer;
   }
 `;
 
