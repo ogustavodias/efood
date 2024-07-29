@@ -1,14 +1,8 @@
-import styled, { keyframes } from "styled-components";
-
-const showModal = keyframes`
-  from {
-    transform: scale(0);
-  } to {
-    transform: scale(1);
-  }
-`;
+import styled from "styled-components";
 
 export const Modal = styled.div`
+  transform: scale(0);
+  pointer-events: none;
   display: grid;
   align-items: center;
   position: fixed;
@@ -18,5 +12,10 @@ export const Modal = styled.div`
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 2;
-  animation: ${showModal} 0.3s ease forwards;
+  transition: transform 0.3s ease;
+
+  &.openned {
+    transform: scale(1);
+    pointer-events: initial;
+  }
 `;

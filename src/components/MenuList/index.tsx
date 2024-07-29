@@ -25,18 +25,17 @@ const MenuList = ({ menu }: Props) => {
     setModalContent(dish);
   }
 
-  function closeModal() {
-    setModalOpen(true);
+  function closeModal(element: EventTarget & Element) {
+    setModalOpen(false);
     setModalContent(null);
+    element.classList.remove("openned");
   }
 
   return (
     <>
-      {modalOpen && modalContent && (
-        <Modal closeModal={closeModal}>
-          <ModalDishDetails dish={modalContent} />
-        </Modal>
-      )}
+      <Modal openned={modalOpen} closeModal={closeModal}>
+        <ModalDishDetails dish={modalContent} />
+      </Modal>
       <S.List>
         {menu.map((item) => (
           <MenuCard key={item.id} dish={item} openModal={openModal} />

@@ -11,10 +11,12 @@ import { toCurrency } from "../../utils/toCurrency";
 import { Dish } from "../../types/restaurant";
 
 interface Props {
-  dish: Dish;
+  dish: Dish | null;
 }
 
 const ModalDishDetails = ({ dish }: Props) => {
+  if (!dish) return null;
+
   return (
     <div className="container" style={{ padding: "0px 20px" }}>
       <S.Card>

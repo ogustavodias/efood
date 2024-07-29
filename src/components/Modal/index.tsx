@@ -1,18 +1,31 @@
+// React
+import React, { PropsWithChildren, useRef } from "react";
+
 // Styles
-import React, { PropsWithChildren } from "react";
 import * as S from "./styles";
 
 interface Props extends PropsWithChildren {
-  closeModal: () => void;
+  closeModal: (element: EventTarget & Element) => void;
+  openned: boolean;
 }
 
-const Modal = ({ children, closeModal }: Props) => {
+const Modal = ({ children, closeModal, openned }: Props) => {
+  const modalElement = useRef(null);
+
   function checkOutsideClick(e: React.MouseEvent) {
     const { currentTarget, target } = e;
-    if (currentTarget === target) closeModal();
+    if (currentTarget === target) closeModal(currentTarget);
   }
 
-  return <S.Modal onMouseDown={checkOutsideClick}>{children}</S.Modal>;
+  return (
+    <S.Modal
+      ref={modalElement}
+      className={openned ? "openned" : ""}
+      onMouseDown={checkOutsideClick}
+    >
+      {children}
+    </S.Modal>
+  );
 };
 
 export default Modal;
