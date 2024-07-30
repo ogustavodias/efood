@@ -13,20 +13,30 @@ import { Link, useParams } from "react-router-dom";
 
 // Types
 import Restaurant from "../../types/restaurant";
+
+// Components
 import Modal from "../../components/Modal";
 import ModalCart from "../../components/ModalCart";
 
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { RootReducer } from "../../redux/configureStore";
+import { close, open } from "../../redux/reducers/cart";
+
 const Perfil = () => {
-  const [cartModalOpen, setCartModalOpen] = React.useState(false);
+  const cart = useSelector((state: RootReducer) => state.cart);
+  const { isOpen } = cart;
+  const { length } = cart.list;
+  const dispatch = useDispatch();
   const [restaurant, setRestaurant] = React.useState<Restaurant>();
   const { id } = useParams();
 
   function openModal() {
-    setCartModalOpen(true);
+    dispatch(open());
   }
 
   function closeModal(element: EventTarget & Element) {
-    setCartModalOpen(false);
+    dispatch(close());
     element.classList.remove("openned");
   }
 
@@ -45,14 +55,16 @@ const Perfil = () => {
 
   return (
     <>
-      <Modal openned={cartModalOpen} closeModal={closeModal}>
+      <Modal openned={isOpen} closeModal={closeModal}>
         <ModalCart />
       </Modal>
       <Header>
         <div className="container">
           <S.Nav>
             <Link to={"/"}>Restaurantes</Link>
-            <span onClick={openModal}>0 produtos(s) no carrinho</span>
+            <span
+              onClick={openModal}
+            >{`${length} produtos(s) no carrinho`}</span>
           </S.Nav>
         </div>
         <S.CuisineInfo background={restaurant.capa}>

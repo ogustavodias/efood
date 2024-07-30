@@ -7,10 +7,10 @@ import * as S from "./styles";
 // Components
 import MenuCard from "../MenuCard";
 import Modal from "../Modal";
+import ModalDishDetails from "../ModalDishDetails";
 
 // Types
 import { Dish } from "../../types/restaurant";
-import ModalDishDetails from "../ModalDishDetails";
 
 type Props = {
   menu: Dish[];
@@ -34,7 +34,7 @@ const MenuList = ({ menu }: Props) => {
   return (
     <>
       <Modal openned={modalOpen} closeModal={closeModal}>
-        <ModalDishDetails dish={modalContent} />
+        {modalContent && <ModalDishDetails dish={modalContent} />}
       </Modal>
       <S.List>
         {menu.map((item) => (

@@ -8,15 +8,19 @@ import Footer from "./components/Footer";
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./Routes";
 
+// Redux
+import { Provider } from "react-redux";
+import store from "./redux/configureStore";
+
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyles />
       <BrowserRouter>
         <AppRoutes />
         <Footer />
       </BrowserRouter>
-    </>
+    </Provider>
   );
 }
 
