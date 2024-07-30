@@ -11,12 +11,14 @@ import { toCurrency } from "../../utils/toCurrency";
 import Button from "../Button";
 
 // Redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../../redux/configureStore";
+import { remove } from "../../redux/reducers/cart";
 
 const ModalCart = () => {
   const { list } = useSelector((state: RootReducer) => state.cart);
   const totalPrice = list.reduce((acc, value) => acc + value.preco, 0);
+  const dispatch = useDispatch();
 
   return (
     <S.Aside>
@@ -29,7 +31,11 @@ const ModalCart = () => {
                 <S.DishName>{item.nome}</S.DishName>
                 <S.DishPrice>{toCurrency(item.preco)}</S.DishPrice>
               </div>
-              <S.TrashIcon src={trashIcon} alt="trash icon" />
+              <S.TrashIcon
+                src={trashIcon}
+                alt="trash icon"
+                onClick={() => dispatch(remove(item.id))}
+              />
             </S.Dish>
           ))}
         </S.List>
