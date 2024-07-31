@@ -38,6 +38,62 @@ const ModalCart = () => {
               />
             </S.Dish>
           ))}
+          <S.Dish>
+            <S.DishPhoto src={trashIcon} />
+            <div>
+              <S.DishName>Teste</S.DishName>
+              <S.DishPrice>{toCurrency(60)}</S.DishPrice>
+            </div>
+            <S.TrashIcon src={trashIcon} alt="trash icon" />
+          </S.Dish>
+          <S.Dish>
+            <S.DishPhoto src={trashIcon} />
+            <div>
+              <S.DishName>Teste</S.DishName>
+              <S.DishPrice>{toCurrency(60)}</S.DishPrice>
+            </div>
+            <S.TrashIcon src={trashIcon} alt="trash icon" />
+          </S.Dish>
+          <S.Dish>
+            <S.DishPhoto src={trashIcon} />
+            <div>
+              <S.DishName>Teste</S.DishName>
+              <S.DishPrice>{toCurrency(60)}</S.DishPrice>
+            </div>
+            <S.TrashIcon src={trashIcon} alt="trash icon" />
+          </S.Dish>
+          <S.Dish>
+            <S.DishPhoto src={trashIcon} />
+            <div>
+              <S.DishName>Teste</S.DishName>
+              <S.DishPrice>{toCurrency(60)}</S.DishPrice>
+            </div>
+            <S.TrashIcon src={trashIcon} alt="trash icon" />
+          </S.Dish>
+          <S.Dish>
+            <S.DishPhoto src={trashIcon} />
+            <div>
+              <S.DishName>Teste</S.DishName>
+              <S.DishPrice>{toCurrency(60)}</S.DishPrice>
+            </div>
+            <S.TrashIcon src={trashIcon} alt="trash icon" />
+          </S.Dish>
+          <S.Dish>
+            <S.DishPhoto src={trashIcon} />
+            <div>
+              <S.DishName>Teste</S.DishName>
+              <S.DishPrice>{toCurrency(60)}</S.DishPrice>
+            </div>
+            <S.TrashIcon src={trashIcon} alt="trash icon" />
+          </S.Dish>
+          <S.Dish>
+            <S.DishPhoto src={trashIcon} />
+            <div>
+              <S.DishName>Teste</S.DishName>
+              <S.DishPrice>{toCurrency(60)}</S.DishPrice>
+            </div>
+            <S.TrashIcon src={trashIcon} alt="trash icon" />
+          </S.Dish>
         </S.List>
       ) : (
         ""

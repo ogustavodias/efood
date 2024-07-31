@@ -20,6 +20,7 @@ export const Aside = styled.aside`
   padding: 32px 8px;
   background-color: ${colors.red};
   animation: ${toLeftShow} 0.3s ease forwards;
+  overflow-y: hidden;
 
   @media only screen and (max-width: 500px) {
     max-width: 80vw;
@@ -27,7 +28,9 @@ export const Aside = styled.aside`
 `;
 
 export const List = styled.ul`
+  max-height: 85%;
   margin-bottom: 40px;
+  overflow-y: auto;
 `;
 
 export const Dish = styled.li`
