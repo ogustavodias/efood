@@ -5,9 +5,9 @@ import React from "react";
 import * as S from "./styles";
 
 // Components
-import MenuCard from "../MenuCard";
 import Modal from "../Modal";
 import ModalDishDetails from "../ModalDishDetails";
+import Button from "../Button";
 
 // Types
 import { Dish } from "../../types/restaurant";
@@ -16,7 +16,7 @@ type Props = {
   menu: Dish[];
 };
 
-const MenuList = ({ menu }: Props) => {
+const Menu = ({ menu }: Props) => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalContent, setModalContent] = React.useState<Dish | null>(null);
 
@@ -38,11 +38,18 @@ const MenuList = ({ menu }: Props) => {
       </Modal>
       <S.List>
         {menu.map((item) => (
-          <MenuCard key={item.id} dish={item} openModal={openModal} />
+          <S.Card key={item.id}>
+            <img src={item.foto} alt={item.nome} />
+            <S.Infos>
+              <S.DishName>{item.nome}</S.DishName>
+              <S.DishDescription>{item.descricao}</S.DishDescription>
+              <Button onClick={() => openModal(item)}>Mais detalhes</Button>
+            </S.Infos>
+          </S.Card>
         ))}
       </S.List>
     </>
   );
 };
 
-export default MenuList;
+export default Menu;

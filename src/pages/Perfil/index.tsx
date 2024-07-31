@@ -6,7 +6,7 @@ import * as S from "./styles";
 
 // Components
 import Header from "../../components/Header";
-import MenuList from "../../components/MenuList";
+import Menu from "../../components/Menu";
 
 // React-router-dom
 import { Link, useParams } from "react-router-dom";
@@ -75,7 +75,7 @@ const Perfil = () => {
         </S.CuisineInfo>
       </Header>
       <section className="container">
-        <MenuList menu={restaurant.cardapio} />
+        <Menu menu={restaurant.cardapio} />
       </section>
     </>
   );
