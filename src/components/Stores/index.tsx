@@ -1,32 +1,21 @@
-// React
-import React from "react";
-
 // Styles
 import * as S from "./styles";
 
 // Types
-import Restaurant from "../../types/restaurant";
+import { useGetStoresQuery } from "../../services/api";
 
 const StoreList = () => {
-  const [restaurants, setRestaurants] = React.useState<Restaurant[]>();
+  const { data, isLoading, isError } = useGetStoresQuery(undefined);
 
-  React.useEffect(() => {
-    async function fetchRestaurants() {
-      const url = "https://fake-api-tau.vercel.app/api/efood/restaurantes";
-      const response = await fetch(url);
-      const json = await response.json();
-      if (response.ok) setRestaurants(json);
-    }
-
-    fetchRestaurants();
-  }, []);
-
-  if (!restaurants) return null;
+  if (isLoading) return <p>Carregando...</p>;
+  if (isError) return <p>Ocorreu um erro</p>;
+  if (!data) return null;
+  if (!data) return null;
 
   // Else
   return (
     <S.StoreList>
-      {restaurants.map((item) => (
+      {data.map((item) => (
         <S.Card key={item.id}>
           <S.Tags>
             {item.destacado && <span>Destaque da semana</span>}

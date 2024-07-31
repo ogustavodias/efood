@@ -1,6 +1,3 @@
-// React
-import React from "react";
-
 // Styles
 import * as S from "./styles";
 
@@ -11,39 +8,28 @@ import Menu from "../../components/Menu";
 // React-router-dom
 import { Link, useParams } from "react-router-dom";
 
-// Types
-import Restaurant from "../../types/restaurant";
-
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../../redux/configureStore";
 import { open, setElementIn } from "../../redux/reducers/modal";
+import { useGetStoreQuery } from "../../services/api";
 
 const Perfil = () => {
   const cart = useSelector((state: RootReducer) => state.cart);
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const { list } = cart;
   const { length } = cart.list;
-  const [restaurant, setRestaurant] = React.useState<Restaurant>();
-  const { id } = useParams();
-  const dispatch = useDispatch();
+  const { data, isLoading, isError } = useGetStoreQuery(id!);
 
   function openModal() {
     dispatch(open());
     dispatch(setElementIn({ id: "cart", value: JSON.stringify(list) }));
   }
 
-  React.useEffect(() => {
-    async function fetchRestaurant() {
-      const url = `https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`;
-      const response = await fetch(url);
-      const json = await response.json();
-      if (response.ok) setRestaurant(json);
-    }
-
-    fetchRestaurant();
-  }, [id]);
-
-  if (!restaurant) return null;
+  if (isLoading) return <p>Carregando...</p>;
+  if (isError) return <p>Ocorreu um erro</p>;
+  if (!data) return null;
 
   return (
     <>
@@ -56,15 +42,15 @@ const Perfil = () => {
             >{`${length} produtos(s) no carrinho`}</span>
           </S.Nav>
         </div>
-        <S.CuisineInfo background={restaurant.capa}>
+        <S.CuisineInfo background={data.capa}>
           <div className="container">
-            <S.Specialty>{restaurant.tipo}</S.Specialty>
-            <S.Name>{restaurant.titulo}</S.Name>
+            <S.Specialty>{data.tipo}</S.Specialty>
+            <S.Name>{data.titulo}</S.Name>
           </div>
         </S.CuisineInfo>
       </Header>
       <section className="container">
-        <Menu menu={restaurant.cardapio} />
+        <Menu menu={data.cardapio} />
       </section>
     </>
   );

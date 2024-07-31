@@ -37,7 +37,7 @@ const Modal = () => {
   React.useEffect(() => {
     if (isOpen) modalElement.current?.classList.add("isOpen");
     else modalElement.current?.classList.remove("isOpen");
-  }, [dispatch, isOpen]);
+  }, [isOpen]);
 
   return (
     <S.Modal

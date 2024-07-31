@@ -7,7 +7,7 @@ export interface Dish {
   porcao: string;
 }
 
-interface Restaurant {
+export interface Store {
   id: number;
   titulo: string;
   destacado: boolean;
@@ -17,5 +17,3 @@ interface Restaurant {
   capa: string;
   cardapio: Dish[];
 }
-
-export default Restaurant;
