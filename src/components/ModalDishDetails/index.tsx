@@ -12,8 +12,9 @@ import { Dish } from "../../types/restaurant";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { add, open, remove } from "../../redux/reducers/cart";
+import { add, remove } from "../../redux/reducers/cart";
 import { RootReducer } from "../../redux/configureStore";
+import { setElementIn } from "../../redux/reducers/modal";
 
 interface Props {
   dish: Dish;
@@ -21,13 +22,15 @@ interface Props {
 
 const ModalDishDetails = ({ dish }: Props) => {
   const { list } = useSelector((state: RootReducer) => state.cart);
-  const alreadyInCart =
-    list.findIndex((item) => item.id === dish.id) !== -1 ? true : false;
   const dispatch = useDispatch();
+
+  function alreadyInCart() {
+    return list.findIndex((item) => item.id === dish.id) !== -1 ? true : false;
+  }
 
   function addToCart() {
     dispatch(add(dish));
-    dispatch(open());
+    dispatch(setElementIn({ id: "cart", value: JSON.stringify(list) }));
   }
 
   function removeOfCart() {
@@ -45,10 +48,10 @@ const ModalDishDetails = ({ dish }: Props) => {
           <S.DishDescription>{dish.descricao}</S.DishDescription>
           <S.DishLot>{`Serve de ${dish.porcao}`}</S.DishLot>
           <Button
-            onClick={alreadyInCart ? removeOfCart : addToCart}
+            onClick={alreadyInCart() ? removeOfCart : addToCart}
             style={{ width: "max-content" }}
           >
-            {alreadyInCart
+            {alreadyInCart()
               ? "Remover do carrinho"
               : `Adicionar ao carrinho - ${toCurrency(dish.preco)}`}
           </Button>

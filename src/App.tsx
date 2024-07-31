@@ -11,6 +11,7 @@ import AppRoutes from "./Routes";
 // Redux
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
+import Modal from "./components/Modal";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <BrowserRouter>
         <AppRoutes />
         <Footer />
+        <Modal />
       </BrowserRouter>
     </Provider>
   );
