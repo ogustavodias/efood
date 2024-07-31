@@ -4,12 +4,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Dish } from "../../types/restaurant";
 
 export interface CartState {
-  isOpen: boolean;
   list: Dish[];
 }
 
 const initialState: CartState = {
-  isOpen: false,
   list: [],
 };
 
@@ -17,12 +15,6 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    open(state) {
-      state.isOpen = true;
-    },
-    close(state) {
-      state.isOpen = false;
-    },
     add(state, action: PayloadAction<Dish>) {
       state.list.push(action.payload);
     },
@@ -32,6 +24,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { open, close, add, remove } = cartSlice.actions;
+export const { add, remove } = cartSlice.actions;
 
 export default cartSlice.reducer;

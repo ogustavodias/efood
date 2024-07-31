@@ -15,7 +15,7 @@ export const Modal = styled.div`
   z-index: 2;
   transition: transform 0.3s ease;
 
-  &.openned {
+  &.isOpen {
     transform: scale(1);
     pointer-events: initial;
   }
