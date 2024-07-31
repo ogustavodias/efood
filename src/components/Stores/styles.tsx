@@ -9,6 +9,17 @@ import starImage from "../../assets/images/estrela.png";
 // Link component of react-router-dom
 import { Link } from "react-router-dom";
 
+export const StoreList = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 80px;
+  justify-items: center;
+
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 export const Card = styled.li`
   position: relative;
   width: 100%;
