@@ -3,7 +3,7 @@ import * as S from "./styles";
 
 // Components
 import Header from "../../components/Header";
-import StoreList from "../../components/StoreList";
+import StoreList from "../../components/Stores";
 
 
 const Home = () => {
