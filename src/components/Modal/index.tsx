@@ -5,8 +5,8 @@ import React from "react";
 import * as S from "./styles";
 
 // Components
-import ModalDishDetails from "../ModalDishDetails";
-import ModalCart from "../ModalCart";
+import DishDetailsInModal from "../DishDetailsInModal";
+import AsideInModal from "../AsideInModal";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -24,9 +24,9 @@ const Modal = () => {
     if (elementIn) {
       switch (elementIn.id) {
         case "dish":
-          return <ModalDishDetails dish={JSON.parse(elementIn.value)} />;
+          return <DishDetailsInModal dish={JSON.parse(elementIn.value)} />;
         case "cart":
-          return <ModalCart />;
+          return <AsideInModal />;
         default:
           return "";
       }
