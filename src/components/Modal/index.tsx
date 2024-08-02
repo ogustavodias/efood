@@ -3,11 +3,15 @@ import React from "react";
 
 // Styles
 import * as S from "./styles";
+
+// Components
+import ModalDishDetails from "../ModalDishDetails";
+import ModalCart from "../ModalCart";
+
+// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../../redux/configureStore";
 import { close } from "../../redux/reducers/modal";
-import ModalDishDetails from "../ModalDishDetails";
-import ModalCart from "../ModalCart";
 
 const Modal = () => {
   const { isOpen, elementIn } = useSelector(
