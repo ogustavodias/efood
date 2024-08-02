@@ -8,7 +8,7 @@ import FormsOfCart from "../FormsOfCart";
 export type Step = "cart" | "adress" | "payment" | "finish";
 
 const AsideInModal = () => {
-  const [step, setStep] = React.useState<Step>("adress");
+  const [step, setStep] = React.useState<Step>("cart");
 
   function getElementOfStep() {
     switch (step) {
