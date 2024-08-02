@@ -34,16 +34,11 @@ const Modal = () => {
     if (currentTarget === target) dispatch(close());
   }
 
-  React.useEffect(() => {
-    if (isOpen) modalElement.current?.classList.add("isOpen");
-    else modalElement.current?.classList.remove("isOpen");
-  }, [isOpen]);
-
   return (
     <S.Modal
       id="modal"
       ref={modalElement}
-      className={!isOpen ? "isOpen" : ""}
+      className={isOpen ? "isOpen" : ""}
       onMouseDown={checkOutsideClick}
     >
       {checkElementToRender()}
