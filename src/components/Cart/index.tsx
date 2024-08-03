@@ -15,7 +15,7 @@ import { RootReducer } from "../../redux/configureStore";
 import { remove } from "../../redux/reducers/cart";
 
 // Types
-import { Step } from "../AsideInModal";
+import { Step } from "../SideBar";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<Step>>;

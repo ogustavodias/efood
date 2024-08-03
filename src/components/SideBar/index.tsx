@@ -3,11 +3,11 @@ import React from "react";
 // Styles
 import * as S from "./styles";
 import Cart from "../Cart";
-import FormsOfCart from "../FormsOfCart";
+import Checkout from "../Checkout";
 
 export type Step = "cart" | "adress" | "payment" | "finish";
 
-const AsideInModal = () => {
+const SideBar = () => {
   const [step, setStep] = React.useState<Step>("cart");
 
   function getElementOfStep() {
@@ -16,7 +16,7 @@ const AsideInModal = () => {
         return <Cart setStep={setStep} />;
       case "adress":
       case "payment":
-        return <FormsOfCart step={step} setStep={setStep} />;
+        return <Checkout step={step} setStep={setStep} />;
       case "finish":
         return <p>Finish</p>;
       default:
@@ -27,4 +27,4 @@ const AsideInModal = () => {
   return <S.Aside>{getElementOfStep()}</S.Aside>;
 };
 
-export default AsideInModal;
+export default SideBar;

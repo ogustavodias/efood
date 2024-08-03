@@ -7,7 +7,7 @@ import * as S from "./styles";
 import Input from "../Input";
 
 // Types
-import { Step } from "../AsideInModal";
+import { Step } from "../SideBar";
 import Button from "../Button";
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
   setStep: React.Dispatch<React.SetStateAction<Step>>;
 }
 
-const FormsOfCart = ({ step, setStep }: Props) => {
+const Checkout = ({ step, setStep }: Props) => {
   return (
     <S.Form>
       <S.Title>Entrega</S.Title>
@@ -39,4 +39,4 @@ const FormsOfCart = ({ step, setStep }: Props) => {
   );
 };
 
-export default FormsOfCart;
+export default Checkout;

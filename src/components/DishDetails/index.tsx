@@ -20,7 +20,7 @@ interface Props {
   dish: Dish;
 }
 
-const DishDetailsInModal = ({ dish }: Props) => {
+const DishDetails = ({ dish }: Props) => {
   const { list } = useSelector((state: RootReducer) => state.cart);
   const dispatch = useDispatch();
 
@@ -61,4 +61,4 @@ const DishDetailsInModal = ({ dish }: Props) => {
   );
 };
 
-export default DishDetailsInModal;
+export default DishDetails;
