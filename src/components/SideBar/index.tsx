@@ -8,7 +8,7 @@ import Checkout from "../Checkout";
 export type Step = "cart" | "adress" | "payment" | "finish";
 
 const SideBar = () => {
-  const [step, setStep] = React.useState<Step>("cart");
+  const [step, setStep] = React.useState<Step>("payment");
 
   function getElementOfStep() {
     switch (step) {

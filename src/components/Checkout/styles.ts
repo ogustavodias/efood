@@ -1,7 +1,15 @@
-import { css, styled } from "styled-components";
+import { css, keyframes, styled } from "styled-components";
 
 // Global colors
 import { colors } from "../../GlobalStyles";
+
+const formShowAnimation = keyframes`
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+`;
 
 export const Form = styled.form`
   .grid-half {
@@ -9,11 +17,18 @@ export const Form = styled.form`
     grid-template-columns: 1fr 1fr;
     gap: 34px;
   }
+
+  .grid-half-2 {
+    display: grid;
+    grid-template-columns: 1fr 45px;
+    gap: 34px;
+  }
 `;
 
 export const inCommon = css`
   display: grid;
   gap: 8px;
+  animation: ${formShowAnimation} 0.3s ease forwards;
 `;
 
 export const Title = styled.h2`
@@ -36,4 +51,8 @@ export const Options = styled.div`
       margin-bottom: 8px;
     }
   }
+`;
+
+export const PaymentGroup = styled.div`
+  ${inCommon};
 `;
