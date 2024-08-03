@@ -26,10 +26,12 @@ const Cart = ({ setStep }: Props) => {
   const totalPrice = list.reduce((acc, value) => acc + value.preco, 0);
   const dispatch = useDispatch();
 
-  function allowedNext() {
-    if (list.length) return true;
-    return false;
-  }
+  if (!list.length)
+    return (
+      <S.EmptyMessage>
+        Carrinho vazio, adicione um item para seguir com a compra.
+      </S.EmptyMessage>
+    );
 
   return (
     <>
@@ -49,16 +51,11 @@ const Cart = ({ setStep }: Props) => {
           </S.Dish>
         ))}
       </S.List>
-
       <S.TotalPrice>
         <span>Valor total</span>
         <span>{toCurrency(totalPrice)}</span>
       </S.TotalPrice>
-      <Button
-        style={{ width: "100%" }}
-        onClick={() => (allowedNext() ? setStep("adress") : "")}
-        disabled={!allowedNext()}
-      >
+      <Button style={{ width: "100%" }} onClick={() => setStep("adress")}>
         Continuar com a entrega
       </Button>
     </>

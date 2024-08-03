@@ -65,3 +65,9 @@ export const TotalPrice = styled.div`
     color: ${colors.whiteRed};
   }
 `;
+
+export const EmptyMessage = styled.p`
+  font-weight: 700px;
+  font-size: 14px;
+  color: ${colors.whiteRed};
+`;
