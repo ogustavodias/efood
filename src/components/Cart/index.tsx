@@ -1,32 +1,24 @@
-import * as S from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import * as reduxCart from "../../redux/reducers/cart";
 
-// SRC of images
-import trashIcon from "../../assets/images/lixeira.png";
-
-// Utils
 import { toCurrency } from "../../utils/toCurrency";
 
-// Components
 import Button from "../Button";
 
-// Redux
-import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../../redux/configureStore";
-import { remove } from "../../redux/reducers/cart";
+import trashIcon from "../../assets/images/lixeira.png";
 
-// Types
-import { Step } from "../SideBar";
+import * as S from "./styles";
 
 interface Props {
   setStep: React.Dispatch<React.SetStateAction<Step>>;
 }
 
 const Cart = ({ setStep }: Props) => {
-  const { list } = useSelector((state: RootReducer) => state.cart);
-  const totalPrice = list.reduce((acc, value) => acc + value.preco, 0);
+  const products = useSelector(reduxCart.selectProducts);
+  const totalPrice = useSelector(reduxCart.selectProductsTotalPrice);
   const dispatch = useDispatch();
 
-  if (!list.length)
+  if (!products.length)
     return (
       <S.EmptyMessage>
         Carrinho vazio, adicione um item para seguir com a compra.
@@ -36,7 +28,7 @@ const Cart = ({ setStep }: Props) => {
   return (
     <>
       <S.List>
-        {list.map((item) => (
+        {products.map((item) => (
           <S.Dish key={item.id}>
             <S.DishPhoto src={item.foto} alt={item.nome} />
             <div>
@@ -46,7 +38,7 @@ const Cart = ({ setStep }: Props) => {
             <S.TrashIcon
               src={trashIcon}
               alt="trash icon"
-              onClick={() => dispatch(remove(item.id))}
+              onClick={() => dispatch(reduxCart.remove(item.id))}
             />
           </S.Dish>
         ))}

@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-// Global colors
 import { colors } from "../../GlobalStyles";
 
 const toLeftShow = keyframes`

@@ -1,8 +1,6 @@
-// Styles
-import * as S from "./styles";
-
-// Typescript with React
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
+
+import * as S from "./styles";
 
 interface Props
   extends PropsWithChildren,

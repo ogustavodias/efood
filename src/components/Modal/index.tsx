@@ -1,17 +1,13 @@
-// React
 import React from "react";
 
-// Styles
-import * as S from "./styles";
-
-// Components
-import DishDetails from "../DishDetails";
-import SideBar from "../SideBar";
-
-// Redux
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "../../redux/configureStore";
 import { close } from "../../redux/reducers/modal";
+
+import DishDetails from "../DishDetails";
+import SideBar from "../SideBar";
+
+import * as S from "./styles";
 
 const Modal = () => {
   const { isOpen, elementIn } = useSelector(

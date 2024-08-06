@@ -1,8 +1,6 @@
-// Styles
-import * as S from "./styles";
-
-// Types
 import { useGetStoresQuery } from "../../services/api";
+
+import * as S from "./styles";
 
 const StoreList = () => {
   const { data, isLoading, isError } = useGetStoresQuery(undefined);

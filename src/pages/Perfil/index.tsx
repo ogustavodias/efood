@@ -1,26 +1,21 @@
-// Styles
-import * as S from "./styles";
-
-// Components
-import Header from "../../components/Header";
-import Menu from "../../components/Menu";
-
-// React-router-dom
 import { Link, useParams } from "react-router-dom";
 
-// Redux
 import { useDispatch, useSelector } from "react-redux";
-import { RootReducer } from "../../redux/configureStore";
 import { open, setElementIn } from "../../redux/reducers/modal";
 import { useGetStoreQuery } from "../../services/api";
 
+import Header from "../../components/Header";
+import Menu from "../../components/Menu";
+
+import * as S from "./styles";
+import { selectProducts } from "../../redux/reducers/cart";
+
 const Perfil = () => {
-  const cart = useSelector((state: RootReducer) => state.cart);
-  const dispatch = useDispatch();
+  const list = useSelector(selectProducts);
+  const { length } = list;
   const { id } = useParams();
-  const { list } = cart;
-  const { length } = cart.list;
   const { data, isLoading, isError } = useGetStoreQuery(id!);
+  const dispatch = useDispatch();
 
   function openModal() {
     dispatch(open());

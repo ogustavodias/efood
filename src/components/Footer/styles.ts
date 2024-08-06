@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Global colors
 import { colors } from "../../GlobalStyles";
 
 export const Footer = styled.footer`

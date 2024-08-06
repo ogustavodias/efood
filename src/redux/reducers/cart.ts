@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootReducer } from "../configureStore";
 
 export interface CartState {
   list: Dish[];
@@ -25,5 +26,9 @@ const cartSlice = createSlice({
 });
 
 export const { add, remove, clear } = cartSlice.actions;
+
+export const selectProducts = (state: RootReducer) => state.cart.list;
+export const selectProductsTotalPrice = (state: RootReducer) =>
+  state.cart.list.reduce((acc, item) => acc + item.preco, 0);
 
 export default cartSlice.reducer;

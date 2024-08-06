@@ -1,11 +1,8 @@
-// Styles
-import * as S from "./styles";
+import Logo from "../Logo";
 
-// Social icons
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 
-// Components
-import Logo from "../Logo";
+import * as S from "./styles";
 
 const Footer = () => {
   return (
@@ -13,9 +10,15 @@ const Footer = () => {
       <div className="container">
         <Logo />
         <S.Social>
-          <span><FaInstagram/></span>
-          <span><FaFacebookF/></span>
-          <span><FaTwitter/></span>
+          <span>
+            <FaInstagram />
+          </span>
+          <span>
+            <FaFacebookF />
+          </span>
+          <span>
+            <FaTwitter />
+          </span>
         </S.Social>
         <S.Disclaimer>
           A efood é uma plataforma para divulgação de estabelecimentos, a

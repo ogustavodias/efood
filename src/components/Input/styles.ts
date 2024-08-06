@@ -1,6 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
 
-// Global colors
 import { colors } from "../../GlobalStyles";
 
 export const inCommon = css`

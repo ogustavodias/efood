@@ -1,7 +1,5 @@
-// Styles
 import * as S from "./styles";
 
-// SRC of image
 import logoSrc from "../../assets/images/logo.svg";
 
 const Logo = () => {

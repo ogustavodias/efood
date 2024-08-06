@@ -46,3 +46,5 @@ declare interface Order {
 declare interface OrderResponse {
   orderId: string;
 }
+
+declare type Step = "cart" | "address" | "payment" | "finish";

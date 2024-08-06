@@ -1,12 +1,9 @@
-// Styles
-import * as S from "./styles";
-
-// Components
-import Button from "../Button";
-
-// Redux
 import { useDispatch } from "react-redux";
 import { open, setElementIn } from "../../redux/reducers/modal";
+
+import Button from "../Button";
+
+import * as S from "./styles";
 
 type Props = {
   menu: Dish[];

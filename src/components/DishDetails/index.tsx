@@ -1,24 +1,18 @@
-// Styles
-import * as S from "./styles";
-
-// Components
-import Button from "../Button";
-
-// Utils
+import { useDispatch, useSelector } from "react-redux";
+import { add, remove, selectProducts } from "../../redux/reducers/cart";
+import { setElementIn } from "../../redux/reducers/modal";
 import { toCurrency } from "../../utils/toCurrency";
 
-// Redux
-import { useDispatch, useSelector } from "react-redux";
-import { add, remove } from "../../redux/reducers/cart";
-import { RootReducer } from "../../redux/configureStore";
-import { setElementIn } from "../../redux/reducers/modal";
+import Button from "../Button";
+
+import * as S from "./styles";
 
 interface Props {
   dish: Dish;
 }
 
 const DishDetails = ({ dish }: Props) => {
-  const { list } = useSelector((state: RootReducer) => state.cart);
+  const list = useSelector(selectProducts);
   const dispatch = useDispatch();
 
   function alreadyInCart() {

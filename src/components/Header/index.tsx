@@ -1,11 +1,8 @@
-// Styles
-import * as S from "./styles";
+import { PropsWithChildren } from "react";
 
-// Components
 import Logo from "../Logo";
 
-// Typescript with React
-import { PropsWithChildren } from "react";
+import * as S from "./styles";
 
 const Header = ({ children }: PropsWithChildren) => {
   return (

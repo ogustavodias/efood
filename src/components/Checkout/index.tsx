@@ -2,20 +2,15 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-// S
-import * as S from "./styles";
-
-// Components
-import Input from "../Input";
-
-// Types
-import { Step } from "../SideBar";
-import Button from "../Button";
 import { useSendOrderMutation } from "../../services/api";
 import { useDispatch, useSelector } from "react-redux";
-import { clear } from "../../redux/reducers/cart";
-import { RootReducer } from "../../redux/configureStore";
 import { toCurrency } from "../../utils/toCurrency";
+import * as reduxCart from "../../redux/reducers/cart";
+
+import Input from "../Input";
+import Button from "../Button";
+
+import * as S from "./styles";
 
 interface Props {
   step: Step;
@@ -24,8 +19,8 @@ interface Props {
 
 const Checkout = ({ step, setStep }: Props) => {
   const [sendOrder, { isLoading, isSuccess, data }] = useSendOrderMutation();
-  const { list } = useSelector((state: RootReducer) => state.cart);
-  const totalPrice = list.reduce((acc, item) => acc + item.preco, 0);
+  const list = useSelector(reduxCart.selectProducts);
+  const totalPrice = useSelector(reduxCart.selectProductsTotalPrice);
   const dispatch = useDispatch();
 
   const form = useFormik({
@@ -112,15 +107,13 @@ const Checkout = ({ step, setStep }: Props) => {
   }
 
   function finish() {
-    dispatch(clear());
+    dispatch(reduxCart.clear());
     setStep("cart");
   }
 
   React.useEffect(() => {
     if (isSuccess) setStep("finish");
   }, [isSuccess, setStep]);
-
-  console.log(form);
 
   return (
     <S.Form onSubmit={form.handleSubmit}>

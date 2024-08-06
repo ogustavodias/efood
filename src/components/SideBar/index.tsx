@@ -1,11 +1,9 @@
 import React from "react";
 
-// Styles
-import * as S from "./styles";
 import Cart from "../Cart";
 import Checkout from "../Checkout";
 
-export type Step = "cart" | "address" | "payment" | "finish";
+import * as S from "./styles";
 
 const SideBar = () => {
   const [step, setStep] = React.useState<Step>("cart");

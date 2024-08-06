@@ -1,13 +1,9 @@
-// Styles
-import * as S from "./styles";
-
-// Components
 import Header from "../../components/Header";
 import StoreList from "../../components/Stores";
 
+import * as S from "./styles";
 
 const Home = () => {
-
   return (
     <>
       <Header>
