@@ -80,10 +80,18 @@ const Checkout = ({ step, setStep }: Props) => {
       number: Yup.string().required("O campo é obrigatório"),
       complement: Yup.string(),
       cardOwner: Yup.string().required("O campo é obrigatório"),
-      cardNumber: Yup.string().required("O campo é obrigatório"),
-      cardCode: Yup.string().required("O campo é obrigatório"),
+      cardNumber: Yup.string()
+        .required("O campo é obrigatório")
+        .min(19, "O campo deve ter 19 caracteres")
+        .max(19, "O campo deve ter 19 caracteres"),
+      cardCode: Yup.string()
+        .required("O campo é obrigatório")
+        .min(3, "O campo deve ter 3 caracteres")
+        .max(3, "O campo deve ter 3 caracteres"),
       expirationMonth: Yup.string().required("O campo é obrigatório"),
-      expirationYear: Yup.string().required("O campo é obrigatório"),
+      expirationYear: Yup.string()
+        .required("O campo é obrigatório")
+        .min(2, "O campo deve ter ao menos 2 caracteres"),
     }),
     validateOnMount: true,
   });
