@@ -4,9 +4,6 @@ import * as S from "./styles";
 // Components
 import Button from "../Button";
 
-// Types
-import { Dish } from "../../types/restaurant";
-
 // Redux
 import { useDispatch } from "react-redux";
 import { open, setElementIn } from "../../redux/reducers/modal";

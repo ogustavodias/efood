@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Types
-import { Dish } from "../../types/restaurant";
-
 export interface CartState {
   list: Dish[];
 }
@@ -21,9 +18,12 @@ const cartSlice = createSlice({
     remove(state, action: PayloadAction<number>) {
       state.list = state.list.filter((item) => item.id !== action.payload);
     },
+    clear(state) {
+      state.list = [];
+    },
   },
 });
 
-export const { add, remove } = cartSlice.actions;
+export const { add, remove, clear } = cartSlice.actions;
 
 export default cartSlice.reducer;

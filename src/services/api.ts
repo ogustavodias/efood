@@ -1,8 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Types
-import { Store } from "../types/restaurant";
-
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
@@ -15,7 +12,14 @@ export const api = createApi({
     getStore: builder.query<Store, string>({
       query: (id) => `restaurantes/${id}`,
     }),
+    sendOrder: builder.mutation<OrderResponse, Order>({
+      query: (body) => {
+        const options = { url: "checkout", method: "POST", body };
+        return options;
+      },
+    }),
   }),
 });
 
-export const { useGetStoresQuery, useGetStoreQuery } = api;
+export const { useGetStoresQuery, useGetStoreQuery, useSendOrderMutation } =
+  api;

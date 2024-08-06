@@ -13,7 +13,8 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:disabled {
-    cursor: initial;
     opacity: 0.5;
+    cursor: initial;
+    pointer-events: none;
   }
 `;

@@ -7,9 +7,6 @@ import Button from "../Button";
 // Utils
 import { toCurrency } from "../../utils/toCurrency";
 
-// Types
-import { Dish } from "../../types/restaurant";
-
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../../redux/reducers/cart";
@@ -20,7 +17,7 @@ interface Props {
   dish: Dish;
 }
 
-const DishDetailsInModal = ({ dish }: Props) => {
+const DishDetails = ({ dish }: Props) => {
   const { list } = useSelector((state: RootReducer) => state.cart);
   const dispatch = useDispatch();
 
@@ -61,4 +58,4 @@ const DishDetailsInModal = ({ dish }: Props) => {
   );
 };
 
-export default DishDetailsInModal;
+export default DishDetails;
