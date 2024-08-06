@@ -32,6 +32,7 @@ export const InputGroup = styled.div`
     padding: 8px;
     border: 2px solid ${colors.whiteRed};
     background-color: ${colors.whiteRed};
+    outline: none;
 
     &.error {
       border: 2px solid ${colors.red};
