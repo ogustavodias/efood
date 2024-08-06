@@ -38,7 +38,7 @@ export const Title = styled.h2`
   margin-bottom: 16px;
 `;
 
-export const AdressGroup = styled.div`
+export const AddressGroup = styled.div`
   ${inCommon}
 `;
 

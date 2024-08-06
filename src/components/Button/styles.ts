@@ -11,4 +11,10 @@ export const Button = styled.button`
   font-weight: 700;
   color: ${colors.red};
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: initial;
+    pointer-events: none;
+  }
 `;

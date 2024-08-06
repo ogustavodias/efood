@@ -5,16 +5,16 @@ import * as S from "./styles";
 import Cart from "../Cart";
 import Checkout from "../Checkout";
 
-export type Step = "cart" | "adress" | "payment" | "finish";
+export type Step = "cart" | "address" | "payment" | "finish";
 
 const SideBar = () => {
-  const [step, setStep] = React.useState<Step>("payment");
+  const [step, setStep] = React.useState<Step>("address");
 
   function getElementOfStep() {
     switch (step) {
       case "cart":
         return <Cart setStep={setStep} />;
-      case "adress":
+      case "address":
       case "payment":
         return <Checkout step={step} setStep={setStep} />;
       case "finish":
