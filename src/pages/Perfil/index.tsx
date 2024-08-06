@@ -9,6 +9,7 @@ import Menu from "../../components/Menu";
 
 import * as S from "./styles";
 import { selectProducts } from "../../redux/reducers/cart";
+import Loader from "../../components/Loader";
 
 const Perfil = () => {
   const list = useSelector(selectProducts);
@@ -22,7 +23,7 @@ const Perfil = () => {
     dispatch(setElementIn({ id: "cart", value: JSON.stringify(list) }));
   }
 
-  if (isLoading) return <p>Carregando...</p>;
+  if (isLoading) return <Loader />;
   if (isError) return <p>Ocorreu um erro</p>;
   if (!data) return null;
 

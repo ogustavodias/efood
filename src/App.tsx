@@ -1,17 +1,13 @@
-// Styles
-import GlobalStyles from "./GlobalStyles";
-
-// Components
-import Footer from "./components/Footer";
-
-// React-router-dom
 import { BrowserRouter } from "react-router-dom";
-import AppRoutes from "./Routes";
 
-// Redux
+import AppRoutes from "./Routes";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
+
+import Footer from "./components/Footer";
 import Modal from "./components/Modal";
+
+import GlobalStyles from "./GlobalStyles";
 
 function App() {
   return (

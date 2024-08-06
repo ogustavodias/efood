@@ -1,11 +1,13 @@
 import { useGetStoresQuery } from "../../services/api";
 
+import Loader from "../Loader";
+
 import * as S from "./styles";
 
 const StoreList = () => {
   const { data, isLoading, isError } = useGetStoresQuery(undefined);
 
-  if (isLoading) return <p>Carregando...</p>;
+  if (isLoading) return <Loader />;
   if (isError) return <p>Ocorreu um erro</p>;
   if (!data) return null;
   if (!data) return null;
