@@ -20,7 +20,7 @@ export const Form = styled.form`
 
   .grid-half-2 {
     display: grid;
-    grid-template-columns: 1fr 45px;
+    grid-template-columns: 1fr 50px;
     gap: 34px;
   }
 `;

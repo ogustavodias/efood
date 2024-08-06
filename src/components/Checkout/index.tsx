@@ -112,6 +112,8 @@ const Checkout = ({ step, setStep }: Props) => {
     if (isSuccess) setStep("finish");
   }, [isSuccess, setStep]);
 
+  console.log(form);
+
   return (
     <S.Form onSubmit={form.handleSubmit}>
       {step === "address" ? (
@@ -155,6 +157,7 @@ const Checkout = ({ step, setStep }: Props) => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 error={checkIfError("zipCode")}
+                mask={"99999-999"}
               />
               <Input
                 id="number"
@@ -164,6 +167,7 @@ const Checkout = ({ step, setStep }: Props) => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 error={checkIfError("number")}
+                mask={"99999"}
               />
             </div>
             <Input
@@ -210,6 +214,7 @@ const Checkout = ({ step, setStep }: Props) => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 error={checkIfError("cardNumber")}
+                mask={"9999 9999 9999 9999"}
               />
               <Input
                 id="cardCode"
@@ -219,6 +224,7 @@ const Checkout = ({ step, setStep }: Props) => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 error={checkIfError("cardCode")}
+                mask={"999"}
               />
             </div>
             <div className="grid-half">
@@ -230,6 +236,7 @@ const Checkout = ({ step, setStep }: Props) => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 error={checkIfError("expirationMonth")}
+                mask={"99"}
               />
               <Input
                 id="expirationYear"
@@ -239,6 +246,7 @@ const Checkout = ({ step, setStep }: Props) => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 error={checkIfError("expirationYear")}
+                mask={"99"}
               />
             </div>
             <S.Options>
