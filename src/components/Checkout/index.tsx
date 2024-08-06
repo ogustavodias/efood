@@ -11,38 +11,23 @@ import Input from "../Input";
 // Types
 import { Step } from "../SideBar";
 import Button from "../Button";
+import { useSendOrderMutation } from "../../services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { clear } from "../../redux/reducers/cart";
+import { RootReducer } from "../../redux/configureStore";
+import { toCurrency } from "../../utils/toCurrency";
 
 interface Props {
   step: Step;
   setStep: React.Dispatch<React.SetStateAction<Step>>;
 }
 
-interface Order {
-  products: [{ id: number; price: number }];
-  delivery: {
-    receiver: string;
-    address: {
-      description: string;
-      city: string;
-      zipCode: string;
-      number: number;
-      complement?: string;
-    };
-  };
-  payment: {
-    card: {
-      name: string;
-      number: string;
-      code: number;
-      expires: {
-        month: number;
-        year: number;
-      };
-    };
-  };
-}
-
 const Checkout = ({ step, setStep }: Props) => {
+  const [sendOrder, { isLoading, isSuccess, data }] = useSendOrderMutation();
+  const { list } = useSelector((state: RootReducer) => state.cart);
+  const totalPrice = list.reduce((acc, item) => acc + item.preco, 0);
+  const dispatch = useDispatch();
+
   const form = useFormik({
     initialValues: {
       receiver: "",
@@ -58,7 +43,31 @@ const Checkout = ({ step, setStep }: Props) => {
       expirationYear: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      const order: Order = {
+        products: list.map((item) => ({ id: item.id, price: item.preco })),
+        delivery: {
+          receiver: values.receiver,
+          address: {
+            description: values.address,
+            city: values.city,
+            zipCode: values.zipCode,
+            number: values.number,
+            complement: values.complement,
+          },
+        },
+        payment: {
+          card: {
+            name: values.cardOwner,
+            number: values.cardNumber,
+            code: values.cardCode,
+            expires: {
+              month: values.expirationMonth,
+              year: values.expirationYear,
+            },
+          },
+        },
+      };
+      sendOrder(order);
     },
     validationSchema: Yup.object({
       receiver: Yup.string().required("O campo é obrigatório"),
@@ -68,25 +77,13 @@ const Checkout = ({ step, setStep }: Props) => {
         .required("O campo é obrigatório")
         .min(9, "O campo deve ter 9 caracteres")
         .max(9, "O campo deve ter 9 caracteres"),
-      number: Yup.number()
-        .required("O campo é obrigatório")
-        .typeError("O campo é do tipo numérico"),
+      number: Yup.string().required("O campo é obrigatório"),
       complement: Yup.string(),
-      cardOwner: Yup.number()
-        .required("O campo é obrigatório")
-        .typeError("O campo é do tipo numérico"),
-      cardNumber: Yup.number()
-        .required("O campo é obrigatório")
-        .typeError("O campo é do tipo numérico"),
-      cardCode: Yup.number()
-        .required("O campo é obrigatório")
-        .typeError("O campo é do tipo numérico"),
-      expirationMonth: Yup.number()
-        .required("O campo é obrigatório")
-        .typeError("O campo é do tipo numérico"),
-      expirationYear: Yup.number()
-        .required("O campo é obrigatório")
-        .typeError("O campo é do tipo numérico"),
+      cardOwner: Yup.string().required("O campo é obrigatório"),
+      cardNumber: Yup.string().required("O campo é obrigatório"),
+      cardCode: Yup.string().required("O campo é obrigatório"),
+      expirationMonth: Yup.string().required("O campo é obrigatório"),
+      expirationYear: Yup.string().required("O campo é obrigatório"),
     }),
     validateOnMount: true,
   });
@@ -106,7 +103,14 @@ const Checkout = ({ step, setStep }: Props) => {
     return Boolean(Object.values(form.errors).length);
   }
 
-  console.log(form);
+  function finish() {
+    dispatch(clear());
+    setStep("cart");
+  }
+
+  React.useEffect(() => {
+    if (isSuccess) setStep("finish");
+  }, [isSuccess, setStep]);
 
   return (
     <S.Form onSubmit={form.handleSubmit}>
@@ -183,9 +187,9 @@ const Checkout = ({ step, setStep }: Props) => {
             </S.Options>
           </S.AddressGroup>
         </>
-      ) : (
+      ) : step === "payment" ? (
         <>
-          <S.Title>Pagamento - Valor a pagar R$ 190,90</S.Title>
+          <S.Title>Pagamento - Valor a pagar {toCurrency(totalPrice)}</S.Title>
 
           <S.PaymentGroup>
             <Input
@@ -238,8 +242,10 @@ const Checkout = ({ step, setStep }: Props) => {
               />
             </div>
             <S.Options>
-              <Button disabled={invalidToFinish()} type="submit">
-                Finalizar pagamento
+              <Button disabled={invalidToFinish() || isLoading} type="submit">
+                {isLoading
+                  ? "Processando o pagamento..."
+                  : "Finalizar pagamento"}
               </Button>
               <Button onClick={() => setStep("address")}>
                 Voltar para a edição de endereço
@@ -247,6 +253,35 @@ const Checkout = ({ step, setStep }: Props) => {
             </S.Options>
           </S.PaymentGroup>
         </>
+      ) : step === "finish" && data ? (
+        <>
+          <S.Title>Pedido realizado - &#123;{data.orderId}&#125;</S.Title>
+
+          <S.FinishGroup>
+            <p>
+              Estamos felizes em informar que seu pedido já está em processo de
+              preparação e, em breve, será entregue no endereço fornecido.
+            </p>
+            <p>
+              Gostaríamos de ressaltar que nossos entregadores não estão
+              autorizados a realizar cobranças extras.
+            </p>
+            <p>
+              Lembre-se da importância de higienizar as mãos após o recebimento
+              do pedido, garantindo assim sua segurança e bem-estar durante a
+              refeição.
+            </p>
+            <p>
+              Esperamos que desfrute de uma deliciosa e agradável experiência
+              gastronômica. Bom apetite!
+            </p>
+            <Button type="button" onClick={finish}>
+              Concluir
+            </Button>
+          </S.FinishGroup>
+        </>
+      ) : (
+        ""
       )}
     </S.Form>
   );

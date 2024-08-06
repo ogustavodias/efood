@@ -7,9 +7,6 @@ import Button from "../Button";
 // Utils
 import { toCurrency } from "../../utils/toCurrency";
 
-// Types
-import { Dish } from "../../types/restaurant";
-
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../../redux/reducers/cart";

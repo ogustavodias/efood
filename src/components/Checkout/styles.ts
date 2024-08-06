@@ -56,3 +56,14 @@ export const Options = styled.div`
 export const PaymentGroup = styled.div`
   ${inCommon};
 `;
+
+export const FinishGroup = styled.div`
+  ${inCommon};
+  gap: 24px;
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    color: ${colors.whiteRed};
+  }
+`;

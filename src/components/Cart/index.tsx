@@ -55,7 +55,7 @@ const Cart = ({ setStep }: Props) => {
         <span>Valor total</span>
         <span>{toCurrency(totalPrice)}</span>
       </S.TotalPrice>
-      <Button style={{ width: "100%" }} onClick={() => setStep("adress")}>
+      <Button style={{ width: "100%" }} onClick={() => setStep("address")}>
         Continuar com a entrega
       </Button>
     </>
